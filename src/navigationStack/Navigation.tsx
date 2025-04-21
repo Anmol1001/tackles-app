@@ -10,6 +10,8 @@ import OnBoarding1 from '../Screens/onBoarding/OnBoarding1';
 import OnBoarding2 from '../Screens/onBoarding/OnBoarding2';
 import OnBoarding3 from '../Screens/onBoarding/OnBoarding3';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import OptScreen from '../Screens/otp/OptScreen';
+import SingleScreen from '../Screens/SingleScreen';
 
 type Props = {};
 
@@ -26,6 +28,8 @@ const Navigation = (props: Props) => {
             <RootStack.Screen name="OnBoarding3" component={OnBoarding3} />
             <RootStack.Screen name="Tab" component={Tabs} />
             <RootStack.Screen name="Contact" component={ContactScreen} />
+            <RootStack.Screen name="OTP" component={OptScreen} />
+            <RootStack.Screen name="SingleScreen" component={SingleScreen} />
           </RootStack.Navigator>
         </NavigationContainer>
       </SafeAreaView>

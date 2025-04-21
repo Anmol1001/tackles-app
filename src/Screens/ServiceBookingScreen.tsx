@@ -7,46 +7,88 @@ import {
 } from 'react-native';
 import React from 'react';
 import HeaderComponent from '../components/HeaderComponent';
-import ImportantForm from '../components/DatePicker';
+import DatePickerExample from '../components/DatePicker';
 
 type Props = {};
 
-const ServiceBookingScreen = (props: Props) => {
+const ServiceBookingScreen = ({navigation}: {navigation: any}) => {
   return (
     <View style={{backgroundColor: '#fff', flex: 1}}>
       <HeaderComponent style={{borderBottomWidth: 1, borderColor: '#CAD2DF'}} />
-      <View style={{paddingHorizontal: '4%', paddingVertical: '6%'}}>
-        <Text>Professional & Reliable Services</Text>
-        <Text>Request a Services</Text>
+      <View
+        style={{
+          paddingHorizontal: '4%',
+          paddingTop: '6%',
+        }}>
+        <Text style={{fontSize: 20, fontWeight: '700'}}>
+          Professional & Reliable Services
+        </Text>
+        <Text style={{fontSize: 20, fontWeight: '500'}}>
+          Request a Services
+        </Text>
 
-        <View style={{gap: '5%', marginTop: '6%'}}>
-          <TextInput placeholder="Full Name " style={styles.inputBox} />
+        <View style={{marginTop: '6%'}}>
+          <TextInput
+            placeholder="Full Name"
+            style={styles.inputBox}
+            placeholderTextColor={'#4B4B4B'}
+          />
           <TextInput
             placeholder="Phone Number "
             style={styles.inputBox}
             keyboardType="numeric"
+            placeholderTextColor={'#4B4B4B'}
           />
+          <TouchableOpacity style={styles.inputBox}>
+            <Text style={{color: '#4B4B4B'}}>
+              Select Services<Text style={{color: 'red'}}>*</Text>
+            </Text>
+          </TouchableOpacity>
           <TextInput
-            placeholder="Select Services"
+            placeholder="Select Date"
             style={styles.inputBox}
             placeholderTextColor={'#4B4B4B'}
           />
-          <TextInput placeholder="Select Date" style={styles.inputBox} />
-          <TextInput placeholder="Select Location" style={styles.inputBox} />
-          <TextInput placeholder="Select shift" style={styles.inputBox} />
+          <TextInput
+            placeholder="Select Location"
+            style={styles.inputBox}
+            placeholderTextColor={'#4B4B4B'}
+          />
+          <TouchableOpacity style={styles.inputBox}>
+            <Text style={{color: '#4B4B4B'}}>
+              Select Shift<Text style={{color: 'red'}}>*</Text>
+            </Text>
+          </TouchableOpacity>
           <TextInput
             placeholder="Message"
-            style={styles.inputBox}
+            style={[styles.inputmessage]}
             editable
             multiline
-            numberOfLines={4}
-            maxLength={40}
+            placeholderTextColor={'#4B4B4B'}
           />
         </View>
       </View>
-      <TouchableOpacity style={{backgroundColor: '#0E61CD', borderRadius: 4}}>
-        <Text style={{color: '#fff'}}>Book Now</Text>
-      </TouchableOpacity>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <TouchableOpacity
+          style={{
+            backgroundColor: '#0E61CD',
+            borderRadius: 4,
+            alignItems: 'center',
+            height: 40,
+            justifyContent: 'center',
+            width: 100,
+          }}
+          onPress={() => {
+            navigation.navigate('OTP');
+          }}>
+          <Text style={{color: '#fff'}}>Book Now</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -59,6 +101,15 @@ const styles = StyleSheet.create({
     color: '#000',
     paddingBottom: 10,
     paddingTop: 14,
+    marginBottom: '5%',
+  },
+  inputmessage: {
+    height: 80,
+    paddingBottom: 50,
+    borderWidth: 1,
+    borderColor: '#E3E3E3',
+    paddingHorizontal: '2.5%',
+    color: '#000',
   },
 });
 
