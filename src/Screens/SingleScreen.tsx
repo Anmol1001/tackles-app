@@ -6,7 +6,8 @@ import ServicesDisplaycard from '../components/services/ServicesDisplaycard';
 
 type Props = {};
 
-const SingleScreen = (props: Props) => {
+const SingleScreen: React.FC<{route: any}> = ({route}) => {
+  const {name, id, description, question, answer, image} = route.params;
   return (
     <View style={{flex: 1}}>
       <HeaderComponent style={{borderBottomWidth: 1, borderColor: '#CAD2DF'}} />
@@ -15,56 +16,53 @@ const SingleScreen = (props: Props) => {
           paddingHorizontal: '5%',
           paddingTop: '5%',
         }}>
-        <Image source={require('../assets/image/singlePage/singleP1.png')} />
+        <Image
+          source={image}
+          style={{width: '100%', height: '34%', borderRadius: 8}}
+        />
         <Text
           style={{
             fontSize: 20,
             color: '#0E61CD',
             fontWeight: '700',
-            marginTop: '5%',
+            marginTop: '4.5%',
             marginBottom: '2%',
           }}>
           Tackles | Dubai
         </Text>
-        <Text style={{color: '#0E61CD', fontWeight: '400'}}>
+        <Text style={{color: '#0E61CD', fontWeight: '400', fontSize: 19}}>
           Professional & Reliable Services in Dubai
         </Text>
         <Text
           style={{
             fontSize: 17,
             fontWeight: '500',
-            marginTop: '5%',
-            lineHeight: 22,
+            marginTop: '2.5%',
           }}>
-          If you’re looking for painting service, we offer expert consultation
-          on colours, materials and budgets to make sure you get what you want.
+          {description}
         </Text>
         <Text
           style={{
             fontSize: 17,
             fontWeight: '500',
-            marginTop: '5%',
-            lineHeight: 20,
+            marginTop: '3%',
           }}>
-          What type of paints do you use for interior and exterior surfaces?
+          {question}
         </Text>
-        <Text style={{fontSize: 17, fontWeight: '500', lineHeight: 22}}>
-          We use high-quality, Dubai climate-appropriate paints including
-          water-based emulsions for interiors and weather-resistant paints for
-          exteriors.
-        </Text>
+        <Text style={{fontSize: 17, fontWeight: '500'}}>{answer}</Text>
         <Text
           style={{
             fontSize: 20,
             color: '#0E61CD',
             fontWeight: '700',
-            marginTop: '5%',
-            marginBottom: '5%',
+            marginTop: '1.8%',
+            marginBottom: '3%',
           }}>
           Other Services
         </Text>
         <View style={{flexDirection: 'row', gap: '5.5%'}}>
           <ServicesDisplaycard
+            textStyle={{marginTop: 4, fontSize: 14, fontWeight: '600'}}
             style={{alignItems: 'center'}}
             name="Plumbing"
             image={require('../assets/image/services/s5.png')}

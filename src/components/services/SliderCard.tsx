@@ -1,9 +1,9 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
 
-type Props = {};
+type Props = {name: string; image: any};
 
-const SliderCard = (props: Props) => {
+const SliderCard = ({name, image}: Props) => {
   return (
     <View
       style={{
@@ -11,9 +11,9 @@ const SliderCard = (props: Props) => {
 
         marginBottom: '2%',
       }}>
-      <Image source={require('../../assets/image/services/banner2.png')} />
-      <View style={{alignItems: 'center', position: 'absolute', top: '22%'}}>
-        <Text style={{fontSize: 20, fontWeight: '700'}}>
+      <Image source={image} />
+      <View style={{alignItems: 'center', position: 'absolute', top: '40%'}}>
+        <Text style={{fontSize: 20, fontWeight: '700', color: '#fff'}}>
           Tackels{'  '}| Dubai
         </Text>
         <Text
@@ -22,12 +22,13 @@ const SliderCard = (props: Props) => {
             fontWeight: '500',
             marginBottom: '4%',
             marginTop: '2%',
+            color: '#fff',
           }}>
           Professional & Reliable Services in Dubai
         </Text>
 
-        <Text style={{fontSize: 20, fontWeight: '600'}}>
-          Light Partition Installation
+        <Text style={{fontSize: 20, fontWeight: '400', color: '#fff'}}>
+          {name}
         </Text>
       </View>
     </View>

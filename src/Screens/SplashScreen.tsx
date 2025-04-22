@@ -1,9 +1,17 @@
 import {View, Text, Image, StyleSheet} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 type Props = {};
 
-const SplashScreen = (props: Props) => {
+const SplashScreen = ({navigation}: any) => {
+  useEffect(() => {
+    // Simulate a loading timeout before hiding the splash screen
+    const timer = setTimeout(() => {
+      navigation.replace('OnBoarding1');
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <View style={styles.container}>
       <Image

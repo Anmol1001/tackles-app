@@ -1,9 +1,17 @@
-import {View, Image, ImageBackground, Text, ScrollView} from 'react-native';
+import {
+  View,
+  Image,
+  ImageBackground,
+  Text,
+  ScrollView,
+  FlatList,
+} from 'react-native';
 import React from 'react';
 import HeaderComponent from '../components/HeaderComponent';
 import ServicesCards from '../components/services/ServicesCards';
 import ServicesDisplaycard from '../components/services/ServicesDisplaycard';
 import SliderCard from '../components/services/SliderCard';
+import {servicesData} from '../data/Data';
 
 type Props = {};
 
@@ -24,7 +32,7 @@ const ServicesScreen = ({navigation}: {navigation: any}) => {
           <Text style={{fontSize: 26, fontWeight: '600', letterSpacing: 0.5}}>
             Painting
           </Text>
-          <Text style={{fontSize: 20, fontWeight: '400', letterSpacing: 1}}>
+          <Text style={{fontSize: 20, fontWeight: '400', letterSpacing: 0.5}}>
             Professional & Reliable Services in Dubai
           </Text>
         </View>
@@ -65,6 +73,26 @@ from leak repairs to full system installations. "
           }}>
           Our Services
         </Text>
+
+        <FlatList
+          data={servicesData}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({item}) => (
+            <ServicesDisplaycard
+              id={item.id}
+              name={item.name}
+              description={item.description}
+              navigation={navigation}
+              question={item.question}
+              answer={item.answer}
+              image={item.image}
+            />
+          )}
+          numColumns={2}
+          columnWrapperStyle={{columnGap: '5.7%'}}
+          showsVerticalScrollIndicator={false}
+        />
+
         <View
           style={{
             flexDirection: 'row',
@@ -73,51 +101,10 @@ from leak repairs to full system installations. "
             columnGap: '4.9%',
             marginBottom: '5%',
           }}>
-          <ServicesDisplaycard
-            name="Wall Paper Fixing"
-            image={require('../assets/image/services/s3.png')}
+          <SliderCard
+            name="Interior Designing"
+            image={require('../assets/image/services/banner4.png')}
           />
-          <ServicesDisplaycard
-            name="Flooring"
-            image={require('../assets/image/services/s4.png')}
-          />
-          <ServicesDisplaycard
-            name="Plumbing"
-            image={require('../assets/image/services/s5.png')}
-          />
-          <ServicesDisplaycard
-            name="Window Cleaning"
-            image={require('../assets/image/services/s6.png')}
-          />
-
-          <ServicesDisplaycard
-            name="Carpenting"
-            image={require('../assets/image/services/s7.png')}
-            onPress={() => navigation.navigate('SingleScreen')}
-          />
-          <ServicesDisplaycard
-            name="Air Conditioning"
-            image={require('../assets/image/services/s8.png')}
-          />
-          <ServicesDisplaycard
-            name="Electrical Works"
-            image={require('../assets/image/services/s9.png')}
-          />
-          <ServicesDisplaycard
-            name="Plumbing Repair"
-            image={require('../assets/image/services/s10.png')}
-          />
-          <SliderCard />
-
-          <ServicesDisplaycard
-            name="Deep Cleaning"
-            image={require('../assets/image/services/s11.png')}
-          />
-          <ServicesDisplaycard
-            name="Ac Repair"
-            image={require('../assets/image/services/s12.png')}
-          />
-          <Image source={require('../assets/image/services/banner3.png')} />
         </View>
       </View>
     </ScrollView>

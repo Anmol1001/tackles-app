@@ -9,6 +9,10 @@ import HeaderComponent from '../components/HeaderComponent';
 import ServiceBookingScreen from '../Screens/ServiceBookingScreen';
 import FaqsScreen from '../Screens/FaqsScreen';
 import ServicesScreen from '../Screens/ServicesScreen';
+import Booking from './Booking';
+import Home from './Home';
+import Services from './Services';
+import Contact from './Contact';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,17 +32,17 @@ const Tabs = () => {
         tabBarIcon: ({focused}) => {
           let iconSource;
           let iconSize;
-          if (route.name === 'HomeScreen') {
+          if (route.name === 'HomeTab') {
             iconSize = focused ? 24 : 24;
             iconSource = focused
               ? require('../assets/image/TabIcon/1.png') // Image for active state
               : require('../assets/image/TabIcon/1.png'); // Image for inactive state
-          } else if (route.name === 'ServicesScreen') {
+          } else if (route.name === 'ServicesTab') {
             iconSize = focused ? 24 : 24;
             iconSource = focused
               ? require('../assets/image/TabIcon/2.png')
               : require('../assets/image/TabIcon/2.png');
-          } else if (route.name === 'ServiceBookingScreen') {
+          } else if (route.name === 'BookingTab') {
             iconSize = focused ? 40 : 40;
             iconSource = focused
               ? require('../assets/image/TabIcon/3.png')
@@ -66,15 +70,12 @@ const Tabs = () => {
         tabBarLabel: '',
         headerShown: false,
       })}>
-      <Tab.Screen name="HomeScreen" component={HomeScreen} />
-      <Tab.Screen name="ServicesScreen" component={ServicesScreen} />
+      <Tab.Screen name="HomeTab" component={Home} />
+      <Tab.Screen name="ServicesTab" component={Services} />
 
-      <Tab.Screen
-        name="ServiceBookingScreen"
-        component={ServiceBookingScreen}
-      />
+      <Tab.Screen name="BookingTab" component={Booking} />
       <Tab.Screen name="FaqsScreen" component={FaqsScreen} />
-      <Tab.Screen name="ContactScreen" component={ContactScreen} />
+      <Tab.Screen name="ContactScreen" component={Contact} />
     </Tab.Navigator>
   );
 };

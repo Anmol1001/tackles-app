@@ -8,7 +8,7 @@ const ServicesCards = ({name, descrpition, image}: Props) => {
     <View
       style={{
         flexDirection: 'row',
-        marginBottom: '5%',
+        marginBottom: '2%',
       }}>
       <View style={{flex: 1}}>
         <Image source={image} style={{borderRadius: 8}} />

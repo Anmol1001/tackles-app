@@ -17,7 +17,7 @@ const OnBoarding3 = ({navigation}: {navigation: any}) => {
         title="Home"
         image={require('../../assets/image/onBoarding3.png')}
         onPress={() => {
-          navigation.navigate('Tab');
+          navigation.replace('Main');
         }}
       />
     </View>

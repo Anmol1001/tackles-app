@@ -23,9 +23,7 @@ const ServiceBookingScreen = ({navigation}: {navigation: any}) => {
         <Text style={{fontSize: 20, fontWeight: '700'}}>
           Professional & Reliable Services
         </Text>
-        <Text style={{fontSize: 20, fontWeight: '500'}}>
-          Request a Services
-        </Text>
+        <Text style={{fontSize: 20, fontWeight: '500'}}>Request Services</Text>
 
         <View style={{marginTop: '6%'}}>
           <TextInput
@@ -76,7 +74,8 @@ const ServiceBookingScreen = ({navigation}: {navigation: any}) => {
         }}>
         <TouchableOpacity
           style={{
-            backgroundColor: '#0E61CD',
+            borderWidth: 1,
+            borderColor: '#0E61CD',
             borderRadius: 4,
             alignItems: 'center',
             height: 40,
@@ -86,7 +85,7 @@ const ServiceBookingScreen = ({navigation}: {navigation: any}) => {
           onPress={() => {
             navigation.navigate('OTP');
           }}>
-          <Text style={{color: '#fff'}}>Book Now</Text>
+          <Text style={{color: '#000'}}>Book Now</Text>
         </TouchableOpacity>
       </View>
     </View>
