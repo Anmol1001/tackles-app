@@ -4,24 +4,21 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ServiceBookingScreen from '../Screens/ServiceBookingScreen';
 import OptScreen from '../Screens/otp/OptScreen';
 import VerifiedScreen from '../Screens/otp/VerifiedScreen';
-import AdminOtp from '../Screens/auth/AdminOtp';
-import AdminOtpVerify from '../Screens/auth/AdminOtpVerify';
+import HomeScreen from '../Screens/HomeScreen';
+import FaqsScreen from '../Screens/FaqsScreen';
+import FaqsSingle from '../FaqsSingle';
 
 type Props = {};
 
 const Stack = createNativeStackNavigator();
 
-const Booking = (props: Props) => {
+const Faqs = (props: Props) => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen
-        name="ServiceBookingScreen"
-        component={ServiceBookingScreen}
-      />
-      <Stack.Screen name="AdminOtp" component={AdminOtp} />
-      <Stack.Screen name="AdminOtpVerify" component={AdminOtpVerify} />
+      <Stack.Screen name="FaqsScreen" component={FaqsScreen} />
+      <Stack.Screen name="FAQsSingle" component={FaqsSingle} />
     </Stack.Navigator>
   );
 };
 
-export default Booking;
+export default Faqs;

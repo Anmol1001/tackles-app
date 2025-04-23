@@ -3,50 +3,11 @@ import React from 'react';
 import HeaderComponent from '../components/HeaderComponent';
 import FaqsCard from '../components/faqs/FaqsCard';
 import SearchBar from '../components/SearchBar';
+import {faqsQuestioin, questions} from '../data/Data';
 
-const FaqsScreen = () => {
-  const questions = [
-    {name: 'General Question', number: 5},
-    {
-      name: 'Painting',
-      number: 8,
-    },
-    {
-      name: 'Wallpaper Fixing',
-      number: 11,
-    },
-    {
-      name: ' Flooring',
-      number: 7,
-    },
-    {
-      name: 'Carpenting',
-      number: 4,
-    },
-
-    {
-      name: 'Air Filteration',
-      number: 10,
-    },
-    {
-      name: 'Cladding',
-      number: 12,
-    },
-    {
-      name: 'Roofing',
-      number: 6,
-    },
-    {
-      name: 'Cleaning',
-      number: 9,
-    },
-    {
-      name: 'Booking Related',
-      number: 5,
-    },
-  ];
+const FaqsScreen = ({navigation}: {navigation: any}) => {
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
       <HeaderComponent style={{borderBottomWidth: 1, borderColor: '#CAD2DF'}} />
 
       <View style={{paddingHorizontal: '4%', paddingTop: '5%'}}>
@@ -59,10 +20,16 @@ const FaqsScreen = () => {
         <SearchBar />
 
         <FlatList
-          data={questions}
+          data={faqsQuestioin}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({item}) => (
-            <FaqsCard name={item.name} number={item.number} />
+            <FaqsCard
+              category={item.category}
+              number={item.number}
+              id={item.id}
+              questions={item.questions}
+              navigation={navigation}
+            />
           )}
           showsVerticalScrollIndicator={false}
         />

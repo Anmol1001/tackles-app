@@ -1,17 +1,18 @@
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import React, {useRef, useState} from 'react';
 import {
   View,
-  TextInput,
-  StyleSheet,
   Text,
-  Alert,
+  StyleSheet,
   TouchableOpacity,
+  TextInput,
+  Alert,
 } from 'react-native';
-import Button from '../../components/ButtonComponent';
+import React, {useRef, useState} from 'react';
 import HeaderComponent from '../../components/HeaderComponent';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
-const OptScreen = ({route}: {route: any}) => {
+type Props = {};
+
+const AdminOtp = (props: Props) => {
   const [otp, setOtp] = useState(['', '', '', '']); // Manage OTP state
   const inputRefs = useRef<Array<TextInput | null>>([]);
 
@@ -44,7 +45,7 @@ const OptScreen = ({route}: {route: any}) => {
   const handleNavigate = () => {
     const enteredOtp = otp.join(''); // Combine the OTP into a single string
     if (enteredOtp === '11111') {
-      navigation.navigate('Verify');
+      navigation.navigate('AdminOtpVerify');
     } else {
       Alert.alert('Error', 'Wrong OTP! Please try again.');
     }
@@ -56,23 +57,22 @@ const OptScreen = ({route}: {route: any}) => {
 
       <View style={styles.container}>
         <Text style={{fontSize: 24}}>
-          Get instant confirmation and reliable support for all your service
-          requests.
+          Thank you! Your booking is confirmed — details have been sent to you.
         </Text>
 
         <Text
           style={{
-            width: '60%',
+            width: '70%',
             textAlign: 'center',
             marginBottom: '14%',
             fontSize: 22,
             marginTop: '30%',
             fontWeight: '500',
           }}>
-          Your request has been successfully logged.
+          Booking request received. Awaiting confirmation!
         </Text>
         <Text style={{fontSize: 20, marginBottom: '10%', fontWeight: '500'}}>
-          Please enter your OTP to proceed.
+          Enter your OTP to continue.
         </Text>
         <View style={styles.otpBox}>
           {otp.map((_, index) => (
@@ -92,16 +92,19 @@ const OptScreen = ({route}: {route: any}) => {
         </View>
         <TouchableOpacity
           style={{
-            backgroundColor: '#0E61CD',
-            height: 40,
-            width: 130,
+            borderColor: '#0E61CD',
+            height: 48,
+            width: 129,
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 4,
             marginTop: '28%',
+            borderWidth: 1,
           }}
           onPress={handleNavigate}>
-          <Text style={{fontSize: 24, color: '#fff'}}>Submit</Text>
+          <Text style={{fontSize: 24, color: '#000', fontWeight: '700'}}>
+            Submit
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -135,4 +138,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OptScreen;
+export default AdminOtp;

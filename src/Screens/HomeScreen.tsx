@@ -9,7 +9,7 @@ import NumberBar from '../components/home/NumberBar';
 
 type Props = {};
 
-const HomeScreen = (props: Props) => {
+const HomeScreen = ({navigation}: {navigation: any}) => {
   return (
     <View
       style={{
@@ -68,8 +68,9 @@ const HomeScreen = (props: Props) => {
             title="Painter"
           />
           <ProfessionalCard
-            image={require('../assets/image/homescreen/person1.png')}
+            image={require('../assets/image/homescreen/person5.png')}
             title="Plumber"
+            style={{height: 75, width: 75}}
           />
           <ProfessionalCard
             image={require('../assets/image/homescreen/person3.png')}
@@ -82,7 +83,7 @@ const HomeScreen = (props: Props) => {
         </View>
         <View
           style={{alignItems: 'center', paddingHorizontal: 40, marginTop: 6}}>
-          <NumberBar />
+          <NumberBar navigation={navigation} />
         </View>
       </View>
     </View>

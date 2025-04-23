@@ -9,13 +9,15 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {questions} from '../data/Data';
+import {faqsQuestioin, questions} from '../data/Data';
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
 
-  const filteredData = questions
-    .map(item => item.name) // Extract titles only
-    .filter(name => name.toLowerCase().includes(searchText.toLowerCase()));
+  const filteredData = faqsQuestioin
+    .map(item => item.category) // Extract titles only
+    .filter(category =>
+      category.toLowerCase().includes(searchText.toLowerCase()),
+    );
   return (
     <View>
       <View style={styles.container}>

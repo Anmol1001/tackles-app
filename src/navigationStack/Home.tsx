@@ -14,6 +14,8 @@ const Home = (props: Props) => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="OTP" component={OptScreen} />
+      <Stack.Screen name="Verify" component={VerifiedScreen} />
     </Stack.Navigator>
   );
 };

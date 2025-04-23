@@ -1,9 +1,9 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 
 type Props = {};
 
-const NumberBar = (props: Props) => {
+const NumberBar = ({navigation}: {navigation: any}) => {
   return (
     <View
       style={{
@@ -35,7 +35,8 @@ const NumberBar = (props: Props) => {
           055 616 5029
         </Text>
       </View>
-      <View
+      <TouchableOpacity
+        onPress={() => navigation.navigate('OTP')}
         style={{
           backgroundColor: '#0E61CD',
           width: 80,
@@ -45,7 +46,7 @@ const NumberBar = (props: Props) => {
           justifyContent: 'center',
         }}>
         <Text style={{color: '#fff', fontWeight: '700'}}>Help</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

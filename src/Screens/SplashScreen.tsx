@@ -1,23 +1,33 @@
 import {View, Text, Image, StyleSheet} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 
-type Props = {};
+const SplashScreen = ({navigation}: {navigation: any}) => {
+  const [counter, setCounter] = useState(5); // starts from 3
 
-const SplashScreen = ({navigation}: any) => {
   useEffect(() => {
-    // Simulate a loading timeout before hiding the splash screen
-    const timer = setTimeout(() => {
-      navigation.replace('OnBoarding1');
-    }, 3000);
-    return () => clearTimeout(timer);
+    const timer = setInterval(() => {
+      setCounter(prev => {
+        if (prev === 1) {
+          clearInterval(timer);
+          navigation.replace('OnBoarding1');
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, []);
+
   return (
     <View style={styles.container}>
+      <Text style={styles.counter}>{counter}</Text>
+
       <Image
         source={require('../assets/image/splash.png')}
         style={styles.splashImage}
       />
+
       <View style={styles.logo}>
         <Text style={{fontSize: 16, color: '#4B4B4B', fontWeight: '400'}}>
           Technology Partner
@@ -30,17 +40,28 @@ const SplashScreen = ({navigation}: any) => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-
     justifyContent: 'space-between',
+  },
+  counter: {
+    position: 'absolute',
+    top: 50,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
   },
   splashImage: {
     top: '28%',
   },
-  logo: {bottom: '8%', alignItems: 'center', gap: 20},
+  logo: {
+    bottom: '8%',
+    alignItems: 'center',
+    gap: 20,
+  },
 });
 
 export default SplashScreen;

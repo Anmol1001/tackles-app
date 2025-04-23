@@ -1,15 +1,34 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Touchable, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-type Props = {name: string; descrpition: string; image: any};
+type Props = {
+  name: string;
+  descrpition: string;
+  image: any;
+  onPress?: any;
+  answer?: string;
+  question?: string;
+  id?: any;
+  navigation?: any;
+};
 
-const ServicesCards = ({name, descrpition, image}: Props) => {
+const ServicesCards = ({
+  id,
+  name,
+  descrpition,
+  image,
+  onPress,
+  answer,
+  question,
+  navigation,
+}: Props) => {
   return (
-    <View
+    <TouchableOpacity
       style={{
         flexDirection: 'row',
-        marginBottom: '2%',
-      }}>
+        marginBottom: '4%',
+      }}
+      onPress={onPress}>
       <View style={{flex: 1}}>
         <Image source={image} style={{borderRadius: 8}} />
       </View>
@@ -26,7 +45,7 @@ const ServicesCards = ({name, descrpition, image}: Props) => {
 
         <Text style={{fontSize: 14, fontWeight: '400'}}>{descrpition}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

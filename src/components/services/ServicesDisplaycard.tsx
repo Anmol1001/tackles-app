@@ -18,7 +18,7 @@ type Props = {
 const ServicesDisplaycard = ({
   name,
   image,
-
+  onPress,
   style,
   textStyle,
   navigation,
@@ -28,18 +28,7 @@ const ServicesDisplaycard = ({
   id,
 }: Props) => {
   return (
-    <TouchableOpacity
-      onPress={() =>
-        navigation.navigate('SingleScreen', {
-          name,
-          image,
-          question,
-          answer,
-          description,
-          id,
-        })
-      }
-      style={[style, {marginBottom: '5.4%'}]}>
+    <TouchableOpacity onPress={onPress} style={[style, {marginBottom: '10%'}]}>
       <Image source={image} style={{borderRadius: 4}} />
       <Text
         style={[

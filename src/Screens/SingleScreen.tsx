@@ -1,13 +1,32 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import HeaderComponent from '../components/HeaderComponent';
-
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import ServicesDisplaycard from '../components/services/ServicesDisplaycard';
+import {useNavigation} from '@react-navigation/native';
+import {servicesData} from '../data/Data';
+import {RootStackParamList} from '../types';
 
-type Props = {};
+type SingleScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'SingleScreen'
+>;
 
 const SingleScreen: React.FC<{route: any}> = ({route}) => {
-  const {name, id, description, question, answer, image} = route.params;
+  const navigation = useNavigation<SingleScreenNavigationProp>();
+  const {service} = route.params;
+
+  const navigateToService = (service: any) => {
+    navigation.navigate('SingleScreen', {service});
+  };
+
+  const shuffleArray = (array: any[]) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
+
+  const otherServices = shuffleArray(
+    servicesData.filter(item => item.id !== service.id),
+  ).slice(0, 2);
   return (
     <View style={{flex: 1}}>
       <HeaderComponent style={{borderBottomWidth: 1, borderColor: '#CAD2DF'}} />
@@ -17,7 +36,7 @@ const SingleScreen: React.FC<{route: any}> = ({route}) => {
           paddingTop: '5%',
         }}>
         <Image
-          source={image}
+          source={service.image}
           style={{width: '100%', height: '34%', borderRadius: 8}}
         />
         <Text
@@ -39,7 +58,7 @@ const SingleScreen: React.FC<{route: any}> = ({route}) => {
             fontWeight: '500',
             marginTop: '2.5%',
           }}>
-          {description}
+          {service.description}
         </Text>
         <Text
           style={{
@@ -47,9 +66,9 @@ const SingleScreen: React.FC<{route: any}> = ({route}) => {
             fontWeight: '500',
             marginTop: '3%',
           }}>
-          {question}
+          {service.question}
         </Text>
-        <Text style={{fontSize: 17, fontWeight: '500'}}>{answer}</Text>
+        <Text style={{fontSize: 17, fontWeight: '500'}}>{service.answer}</Text>
         <Text
           style={{
             fontSize: 20,
@@ -61,17 +80,18 @@ const SingleScreen: React.FC<{route: any}> = ({route}) => {
           Other Services
         </Text>
         <View style={{flexDirection: 'row', gap: '5.5%'}}>
-          <ServicesDisplaycard
-            textStyle={{marginTop: 4, fontSize: 14, fontWeight: '600'}}
-            style={{alignItems: 'center'}}
-            name="Plumbing"
-            image={require('../assets/image/services/s5.png')}
-          />
-          <ServicesDisplaycard
-            style={{alignItems: 'center'}}
-            name="Window Cleaning"
-            image={require('../assets/image/services/s6.png')}
-          />
+          {otherServices.map(item => (
+            <ServicesDisplaycard
+              key={item.id}
+              textStyle={{marginTop: 4, fontSize: 14, fontWeight: '600'}}
+              name={item.name}
+              image={item.image}
+              question={item.question}
+              answer={item.answer}
+              description={item.description}
+              onPress={() => navigateToService(item)}
+            />
+          ))}
         </View>
       </View>
     </View>
