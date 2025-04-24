@@ -1,12 +1,19 @@
+import React, {useState} from 'react';
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
-import React from 'react';
 import HeaderComponent from '../../components/HeaderComponent';
 import EmailIcon from '../../assets/icons/Email.svg';
-import EyeIcon from '../../assets/icons/EyeOff.svg';
+import EyeOnIcon from '../../assets/icons/EyeOff.svg';
 
+import EyeOffIcon from 'react-native-vector-icons/Ionicons';
 type Props = {};
 
 const AdminLogin = ({navigation}: {navigation: any}) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
       <HeaderComponent
@@ -54,10 +61,10 @@ const AdminLogin = ({navigation}: {navigation: any}) => {
               flex: 1,
             }}
           />
-          <EmailIcon width={20} height={20} />
+          <EmailIcon width={30} height={20} />
         </TouchableOpacity>
 
-        <TouchableOpacity
+        <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -70,16 +77,23 @@ const AdminLogin = ({navigation}: {navigation: any}) => {
           }}>
           <TextInput
             placeholder="Password"
-            secureTextEntry
+            placeholderTextColor={'#434343'}
             style={{
               fontSize: 20,
               fontWeight: '400',
               flex: 1,
             }}
-            placeholderTextColor={'#434343'}
+            secureTextEntry={!passwordVisible}
           />
-          <EyeIcon width={30} height={30} />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={togglePasswordVisibility}>
+            {passwordVisible ? (
+              <EyeOffIcon name="eye" size={30} />
+            ) : (
+              <EyeOnIcon width={30} height={30} />
+            )}
+          </TouchableOpacity>
+        </View>
+
         <TouchableOpacity
           style={{
             marginTop: '15%',
