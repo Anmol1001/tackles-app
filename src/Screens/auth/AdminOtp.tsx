@@ -68,7 +68,7 @@ const AdminOtp = ({route}: {route: any}) => {
         selectedBudget,
         selectedArea,
         message,
-        date: date?.toISOString(),
+        date: date instanceof Date ? date.toISOString() : date,
       };
 
       dispatch(addFormData(newEntry));

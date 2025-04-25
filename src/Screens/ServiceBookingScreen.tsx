@@ -56,8 +56,8 @@ const ServiceBookingScreen = ({navigation}: {navigation: any}) => {
         selectedBudget,
         selectedPriority,
         message,
-        date,
-      }); // Navigate to OTP screen
+        date: new Date().toISOString(),
+      });
     } else {
       Alert.alert('Incomplete Form', 'Please fill in all required fields.');
     }
