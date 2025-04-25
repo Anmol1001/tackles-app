@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Platform,
+  Alert,
 } from 'react-native';
 import HeaderComponent from '../../components/HeaderComponent';
 import EmailIcon from '../../assets/icons/Email.svg';
@@ -17,9 +18,19 @@ import EyeOffIcon from 'react-native-vector-icons/Ionicons';
 type Props = {};
 const AdminLogin = ({navigation}: {navigation: any}) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [email, setEmail] = useState<any>('');
+  const [password, setPassword] = useState<any>('');
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
+  };
+
+  const handleSubmit = () => {
+    if (password && email === 'admin') {
+      navigation.navigate('ViewBooking');
+    } else {
+      Alert.alert('Wrong Email or Password');
+    }
   };
 
   return (
@@ -55,7 +66,6 @@ const AdminLogin = ({navigation}: {navigation: any}) => {
             Welcome, Admin.
           </Text>
 
-          {/* Email Input */}
           <View
             style={{
               flexDirection: 'row',
@@ -78,11 +88,12 @@ const AdminLogin = ({navigation}: {navigation: any}) => {
               }}
               keyboardType="email-address"
               autoCapitalize="none"
+              value={email}
+              onChangeText={setEmail}
             />
             <EmailIcon width={30} height={20} />
           </View>
 
-          {/* Password Input */}
           <View
             style={{
               flexDirection: 'row',
@@ -103,6 +114,8 @@ const AdminLogin = ({navigation}: {navigation: any}) => {
                 fontWeight: '400',
                 flex: 1,
               }}
+              value={password}
+              onChangeText={setPassword}
             />
             <TouchableOpacity onPress={togglePasswordVisibility}>
               {passwordVisible ? (
@@ -124,7 +137,7 @@ const AdminLogin = ({navigation}: {navigation: any}) => {
               alignItems: 'center',
               borderColor: '#0E61CD',
             }}
-            onPress={() => navigation.navigate('ViewBooking')}>
+            onPress={handleSubmit}>
             <Text style={{fontSize: 22, fontWeight: '600'}}>Login</Text>
           </TouchableOpacity>
         </View>
