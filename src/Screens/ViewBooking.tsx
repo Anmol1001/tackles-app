@@ -81,7 +81,9 @@ const ViewBooking = ({navigation}: {navigation: any}) => {
               <View>
                 <Text
                   style={{fontSize: 18, fontWeight: '500', marginBottom: 6}}>
-                  April 15,2025
+                  {item.date
+                    ? new Date(item.date).toDateString()
+                    : 'No date available'}
                 </Text>
                 <TouchableOpacity
                   style={{

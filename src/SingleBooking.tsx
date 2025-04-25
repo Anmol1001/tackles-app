@@ -54,7 +54,9 @@ const SingleBooking = ({route}: {route: any}) => {
 
                   fontWeight: '500',
                 }}>
-                15 April 2025
+                {entry.date
+                  ? new Date(entry.date).toDateString()
+                  : 'No date available'}
               </Text>
               <Text style={styles.value}>Friday 14:34</Text>
             </View>
