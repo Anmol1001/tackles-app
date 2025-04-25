@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 const SplashScreen = ({navigation}: {navigation: any}) => {
-  const [counter, setCounter] = useState(5); // starts from 3
+  const [counter, setCounter] = useState(10); // starts from 3
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -24,13 +24,11 @@ const SplashScreen = ({navigation}: {navigation: any}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.counter}>{counter}</Text>
-
       <Image
         source={require('../assets/image/splash.png')}
         style={styles.splashImage}
       />
-
+      <Text style={styles.counter}>{counter}</Text>
       <View style={styles.logo}>
         <Text style={{fontSize: 16, color: '#4B4B4B', fontWeight: '400'}}>
           Technology Partner
@@ -52,8 +50,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   counter: {
-    position: 'absolute',
-    top: 50,
+    top: '10%',
     fontSize: 24,
     fontWeight: 'bold',
     color: '#333',
