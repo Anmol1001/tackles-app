@@ -50,7 +50,7 @@ const ServiceBookingScreen = ({navigation}: {navigation: any}) => {
         selectedBudget,
         selectedPriority,
         message,
-        date: new Date().toISOString(),
+        date: date.toISOString(),
       });
     } else {
       Alert.alert('Incomplete Form', 'Please fill in all required fields.');
