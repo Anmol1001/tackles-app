@@ -15,6 +15,9 @@ import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../../redux/store';
 import {createBooking} from '../../api/PostApi';
 
+const OTP_LENGTH = 5;
+const EXPECTED_OTP = '11111';
+
 const {width, height} = Dimensions.get('window'); // Get screen dimensions
 
 // Font scaling utility function
@@ -24,7 +27,7 @@ const scaleFont = (size: number) => {
 };
 
 const AdminOtp = ({route}: {route: any}) => {
-  const [otp, setOtp] = useState(['', '', '', '']); // Manage OTP state
+  const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill('')); // Manage OTP state
   const inputRefs = useRef<Array<TextInput | null>>([]);
   const {
     name,
@@ -42,8 +45,8 @@ const AdminOtp = ({route}: {route: any}) => {
 
   // Clear OTP whenever the screen is focused
   useFocusEffect(
-    React.useCallback(() => {
-      setOtp(['', '', '', '', '']); // Reset OTP on screen focus
+     React.useCallback(() => {
+      setOtp(Array(OTP_LENGTH).fill(''));
     }, []),
   );
 
@@ -67,7 +70,7 @@ const AdminOtp = ({route}: {route: any}) => {
 
   const handleNavigate = async () => {
     const enteredOtp = otp.join(''); // Combine the OTP into a single string
-    if (enteredOtp === '11111') {
+    if (enteredOtp === EXPECTED_OTP) {
       const newEntry = {
         id: Date.now(), // Use timestamp as unique ID
         name,
